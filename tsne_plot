@@ -1,0 +1,17 @@
+tsne = TSNE(n_components=2, random_state=0)
+transformed_data = tsne.fit_transform(dataset_1)
+k = np.array(transformed_data)
+
+tsne_data = np.vstack((transformed_data.T, dataset1_labels)).T
+print(tsne_data)
+
+tsne_df = pd.DataFrame(data=tsne_data, columns=("Dim_1", "Dim_2", "label"))
+# Ploting the result of tsne
+sn.FacetGrid(tsne_df, hue="label", size=6).map(plt.scatter, "Dim_1", "Dim_2").add_legend()
+plt.show()
+
+plt.scatter(k[:, 0], k[:, 1], c=dataset1_labels, s=60, alpha=0.8, label="Violet-R, Aqua-NR")
+plt.title("Rocchio Algorithm")
+plt.legend()
+plt.grid(True)
+plt.show()
